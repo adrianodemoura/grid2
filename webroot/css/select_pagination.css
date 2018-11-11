@@ -1,0 +1,19 @@
+.select-pagination
+{
+	background-color: #eee;
+}
+.select-pagination-linha
+{
+	background-color: #ddd;
+	margin: 3px 2px;
+}
+
+.select-pagination-footer
+{
+	padding: 5px 0px;
+}
+.select-pagination-footer > input[type=button]
+{
+	margin-right: 5px !important;
+	min-width: 30px;
+}

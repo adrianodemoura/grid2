@@ -1,0 +1,53 @@
+.in_total
+{
+	width: 100px;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 5px 0px;
+}
+#atencao
+{
+	color: red;
+	font-weight: bold;
+	background-color: #fcc2c2;
+	padding: 15px 10px;
+	width: 935px;
+	margin: 0px auto;
+}
+#msg
+{
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	text-align: center;
+	min-height: 40px;
+	border-top: 1px solid #ccc;
+	margin-top: 5px;
+	padding: 10px 2px;
+}
+
+.fakeSucesso
+{
+	color: green;
+}
+
+.fakeErro
+{
+	color: red;
+}
+
+.btnFakePopular
+{
+	width: 80px;
+	padding: 5px 0px;
+	border-radius: 5px;
+	border: 1px solid #aaa;
+	background-color: #E9E9E9;
+}
+.btnFakePopular:hover
+{
+	color: red;
+	font-weight: bold;
+	cursor: pointer;
+}

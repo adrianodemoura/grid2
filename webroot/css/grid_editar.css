@@ -1,0 +1,181 @@
+form
+{
+	margin: 0px;
+}
+
+form div
+{
+	clear: none;
+	padding: 0px;
+	margin: 0px;
+}
+form button[type=submit]:first-child, 
+form input[type=submit]:first-child, 
+form .linkBotao:first-child 
+{
+	margin-left: 0px;
+}
+.divFields label:first-child
+{
+	text-align: right;
+	min-width: 220px;
+}
+select
+{
+	max-width: none;
+}
+
+div label:first-child
+{
+	text-align: right;
+	width: auto;
+}
+.divFields .divField input:focus
+{
+	background-color: #FAFFBD;
+}
+.divFields .divField select, 
+.divFields .divField input[type=text], 
+.divFields .divField input[type=password], 
+.divFields .divField textarea 
+{
+	padding: 4px 2px;
+	margin: 0px;
+	border-radius: 3px;
+	border: 1px solid #999;
+	font-size: 14px;
+}
+.divFields .divField select
+{
+	padding: 3.21px 2px;
+}
+.divFields .txtData
+{
+	width: 90px;
+	text-align: center;
+}
+.divBarraTop
+{
+	background-color: #ccc;
+	border: 1px solid #aaa;
+	padding: 8px 0px;
+	height: auto;
+	display: table;
+	width: 938px;
+	border-radius: 7px;
+}
+
+.divBarraTop .divBarTitles span:first-child
+{
+	font-size: 22px;
+	font-weight: bold;
+	margin-left: 10px;
+}
+.divButtons
+{
+	border-top: 1px solid #aaa;
+	padding-top: 5px;
+	margin: 10px 0px 0px 0px;
+	clear: both;
+	min-height: 40px;
+}
+.divButtons .acoes
+{
+	float: left;
+	margin-left: 10px;
+}
+.divButtons .acoes a:hover
+{
+	color: red;
+}
+.bto-salvar
+{
+}
+.bto-fechar
+{
+}
+
+.divFields
+{
+	display: block;
+	position: relative;
+}
+
+.divFields .divField
+{
+	float: left;
+	margin: 3px 5px 0px 0px;
+	padding: 0px 3px;
+}
+.divFields .divField label
+{
+	margin-right: 1px;
+}
+.divFields .divField .spanOnlyView
+{
+	padding: 5px 10px;
+	min-width: 120px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin-left: 5px;
+}
+.divEdit form.fieldSetEdit
+{
+	width: 100%;
+	position: relative;
+}
+
+.divFields .divQuebraLinha
+{
+	background-color: #ddd; 
+	height: 0px; 
+	clear: both;
+}
+.divFields .divTracoLinha
+{
+	background-color: #aaa; 
+	height: 1px;
+	clear: both;
+}
+
+.divFields .divAssociations
+{
+	background-color: #eee;
+	clear: both;
+	padding: 5px 10px;
+	overflow: auto;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+.spanShowField
+{
+	padding: 0px 5px;
+}
+.spanShowField:hover
+{
+	cursor: pointer;
+	background-color: #fcffd6;
+}
+.divShowField
+{
+	font-size: 12px;
+	color: #333;
+	display: none;
+	float: left;
+	position: absolute;
+	z-index: 10001;
+	background-color: #fcffd6;
+	padding: 5px 10px;
+	border-radius: 10px;
+	border: 1px solid #333;
+}
+.imgField
+{
+	cursor: pointer;
+}
+
+.divErroEdit
+{
+	color: red;
+	font-weight: bold;
+}
