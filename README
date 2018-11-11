@@ -1,3 +1,12 @@
 ============================
 Grid 2
 ----------------------------
+
+- Intall
+
+$ cd you_app_cake2
+$ vim composer.json
+add in require line:
+
+adrianodemoura/grid2": "*"
+
