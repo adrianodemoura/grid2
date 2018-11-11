@@ -1,0 +1,9 @@
+{
+	"name": "adrianodemoura/grid2",
+	"description": "grid para cakephp 2.x",
+	"type": "cakephp-plugin",
+	"keywords": ["cakephp", "grid"],
+	"homepage": "https://github.com/adrianodemoura/grid2",
+	"license": "MIT",
+    "minimum-stability": "stable"
+}
