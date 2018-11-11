@@ -10,3 +10,6 @@ add in require line:
 
 adrianodemoura/grid2": "*"
 
+In bootstrap.php, add:
+
+CakePlugin::load('Grid', ['bootstrap'=>true]);

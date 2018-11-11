@@ -2,7 +2,7 @@
 /**
  * class FormatDataBehavior
  *
- * @package 	Grid.Database.Behaviour
+ * @package 	Grid2.Database.Behaviour
  * @author 		adrianodemoura
  * @link 		https://book.cakephp.org/2.0/en/models/behaviors.html
  */

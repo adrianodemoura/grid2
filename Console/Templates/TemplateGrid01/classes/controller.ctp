@@ -19,64 +19,38 @@
  */
 
 echo "<?php\n";
+?>
+/**
+ * Class Controller
+ *
+ * Gerado pelo plugin adrianodemoura/Grid2.
+ */
+<?php
 echo "App::uses('{$plugin}AppController', '{$pluginPath}Controller');\n";
 ?>
 /**
- * <?php echo $controllerName; ?> Controller
-<?php
-if (!$isScaffold) {
-	$defaultModel = Inflector::singularize($controllerName);
-	echo " *\n";
-	echo " * @property {$defaultModel} \${$defaultModel}\n";
-	if (!empty($components)) {
-		foreach ($components as $component) {
-			echo " * @property {$component}Component \${$component}\n";
-		}
-	}
-}
-?>
+ * Mantém o controlador <?php echo $controllerName; ?>
  */
 class <?php echo $controllerName; ?>Controller extends <?php echo $plugin; ?>AppController {
+	/**
+     * Componentes
+     *
+     * @var     array
+     */
+    public $components  = ['Grid2.Grid'];
 
-<?php if ($isScaffold): ?>
-/**
- * Scaffold
- *
- * @var mixed
- */
-	public $scaffold;
+    /**
+     * Página inciial do cadastro <?php echo $controllerName; ?>
+     *
+     * @return 	void
+     */
+    public function index()
+    {
+    	$params 					= [];
 
-<?php else:
+        $params['arrTitles'][0] 	= 'Listando <?php echo $controllerName; ?>';
 
-	if (count($helpers)):
-		echo "/**\n * Helpers\n *\n * @var array\n */\n";
-		echo "\tpublic \$helpers = array(";
-		for ($i = 0, $len = count($helpers); $i < $len; $i++):
-			if ($i != $len - 1):
-				echo "'" . Inflector::camelize($helpers[$i]) . "', ";
-			else:
-				echo "'" . Inflector::camelize($helpers[$i]) . "'";
-			endif;
-		endfor;
-		echo ");\n\n";
-	endif;
+        $this->Grid->index($params);
+    }
 
-	if (count($components)):
-		echo "/**\n * Components\n *\n * @var array\n */\n";
-		echo "\tpublic \$components = array(";
-		for ($i = 0, $len = count($components); $i < $len; $i++):
-			if ($i != $len - 1):
-				echo "'" . Inflector::camelize($components[$i]) . "', ";
-			else:
-				echo "'" . Inflector::camelize($components[$i]) . "'";
-			endif;
-		endfor;
-		echo ");\n\n";
-	endif;
-
-	if (!empty($actions)) {
-		echo trim($actions) . "\n";
-	}
-
-endif; ?>
 }

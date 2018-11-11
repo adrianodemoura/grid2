@@ -224,7 +224,7 @@ function getRandomString($length=10, $characters='0123456789ABCDEFGHIJKLMNOPQRST
  * @param   string  $tipo       Tipo da escrita, utiliza a+ para continuar a escrita, o padrão é re-escrever o arquivo.
  * @return  void
  */
-function gravaLog($conteudo='', $nomeLog='log', $tipo='w')
+function gravaLog($nomeLog='log', $conteudo='', $tipo='w')
 {
     $fp = fopen(ROOT . DS . APP_DIR . DS. 'tmp'.DS.'logs'.DS.$nomeLog.'.log',$tipo);
     ob_start();

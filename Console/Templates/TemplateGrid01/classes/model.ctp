@@ -38,7 +38,7 @@ echo "<?php\n";
 /**
  * Model <?php echo "$name\n"; ?>
  *
- * Gerado pelo plugin Grid
+ * Gerado pelo plugin adrianodemoura/Grid2.
  *
  * @package 	app.Model
  * @since 		CakePHP(tm) v 2.9.5
@@ -101,122 +101,10 @@ if ($primaryKey): ?>
 	 *
 	 * @var 	array
 	 */
-	public $actsAs = ['Grid.FormatData'];
+	public $actsAs = ['Grid2.FormatData'];
 
-<?php if (isset($describe) && !empty($describe)): ?>
-	/**
-	 * Atributos de cada campo
-	 *
-	 * @var 	array
-	 */
-	public $esquema = 
-	[
-	<?php 
-		$l = 1;
-		$m = 1;
-		echo "\n";
+<?php if (!empty($actsAs)): ?>
 
-		foreach($describe as $_cmp => $_arrProp)
-		{
-			$label = str_replace('_', '', ucwords($_cmp, '_'));
-			$label = ($_cmp=='id') ? 'Código' : $label;
-			$label = str_replace('-', '', ucwords($label, '-'));
-			$input = [];
-			$type  = isset($_arrProp['type']) ? $_arrProp['type'] : 'text';
-
-			if (isset($_arrProp['default']) && $_arrProp['default'] != 'null')
-			{
-				$input['default'] = $_arrProp['default'];
-			}
-			$sort = (isset($_arrProp['key']) || !empty($_arrProp['index']))
-				? true
-				: false;
-			$filter = ($sort===true) ? true : '';
-			if ($sort && in_array($type,['string','varchar','varchar2','text']))
-			{
-				$filter = '%%';
-			}
-
-			$input =[];
-			if (isset($_arrProp['length']) || !empty($_arrProp['length']))
-			{
-				$input['maxlength'] = $_arrProp['length'];
-			}
-			$th = '';
-			if (in_array($_cmp,['nome','titulo','title','name']))
-			{
-				$th = "style='min-width: 300px;'";
-			}
-
-			echo "\t\t'$name.$_cmp' => 
-		[
-			'title' 	=> '$label',
-			'alias' 	=> 'mo$m"."c$l',
-			'type' 		=> '$type',\n";
-			if (strtolower($type=='date'))
-			{
-				echo "\t\t\t'displayFormat'\t=>'d/m/Y',\n";
-				echo "\t\t\t'saveFormat'\t=>'Y-m-d',\n";
-			}
-			if (strtolower($type=='datetime'))
-			{
-				echo "\t\t\t'displayFormat'\t=>'d/m/Y H:i:s',\n";
-				echo "\t\t\t'displayFormat'\t=>'Y-m-d H:i:s',\n";
-			}
-
-			if (!empty($input))
-			{
-				echo "\t\t\t'input'\t\t=>\n\t\t\t[\n";
-				foreach($input as $_tag => $_vlr)
-				{
-					echo "\t\t\t\t'$_tag' \t=> \"$_vlr\", ";
-				};
-				echo "\n\t\t\t],\n";
-			};
-
-			if (!empty($th))
-			{
-				echo "\t\t\t'th'\t\t=> \"$th\",\n";
-			}
-
-			if ($sort)
-			{
-				echo "\t\t\t'sort' \t\t=> true,\n";
-			}
-			if (!empty($filter))
-			{
-				echo "\t\t\t'filter' \t=> '$filter',\n";
-			}
-
-		echo "\t\t],\n";
-		$l++;
-		}
-
-		if (!empty($associations['hasAndBelongsToMany']))
-		{
-			foreach($associations['hasAndBelongsToMany'] as $_l => $_arrPropHABTM)
-			{
-				echo "\t\t'".$_arrPropHABTM['alias'].".count'\t=>\n";
-				echo "\t\t[\n";
-				echo "\t\t\t'title'\t=> '".$_arrPropHABTM['alias']." Total', \n";
-				echo "\t\t\t'alias'\t=> 'mo1c".(count($describe)+1)."', \n";
-				echo "\t\t\t'virtual'\t=> true, \n";
-				echo "\t\t],\n";
-
-				echo "\t\t'".$_arrPropHABTM['alias'].".describe'\t=>\n";
-				echo "\t\t[\n";
-				echo "\t\t\t'title'\t=> '".$_arrPropHABTM['alias']."(s)', \n";
-				echo "\t\t\t'alias'\t=> 'mo1c".(count($describe)+2)."', \n";
-				echo "\t\t\t'virtual'\t=> true, \n";
-				echo "\t\t],\n";
-			}
-		}
-	?>
-	];
-
-<?php endif;
-
-if (!empty($actsAs)): ?>
 	/**
 	 * Behaviors
 	 *
@@ -337,16 +225,5 @@ if (!empty($associations['hasAndBelongsToMany'])):
 	echo "\n\t];\n\n";
 endif;
 ?>
-
-	/**
-	 * Executa código antes de re-configurar o esquema
-	 * 
-	 * Utilize este método para customizar o esquema.
-	 *
-	 * @return 	void
-	 */
-	public function beforeSetEsquema()
-	{
-	}
 
 }

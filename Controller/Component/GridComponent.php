@@ -2,7 +2,7 @@
 /**
  * Component Grid
  *
- * @package 	Grid.Component
+ * @package 	Grid2.Component
  * @author 		adrianodemoura
  */
 /**
@@ -63,7 +63,7 @@ class GridComponent extends Component {
 			$possuiFormatData = false;
 			foreach($this->controller->$modelClass->actsAs as $_l => $_act)
 			{
-				if ($_act=='Grid.FormatData')
+				if ($_act=='Grid2.FormatData')
 				{
 					$possuiFormatData = true;
 				}
@@ -227,7 +227,7 @@ class GridComponent extends Component {
 			$possuiGrid = false;
 			foreach($this->controller->components as $_component => $_vlr)
 			{
-				if ($_component=='Grid.Grid')
+				if ($_component=='Grid2.Grid')
 				{
 					$possuiGrid = true;
 				}
@@ -237,7 +237,6 @@ class GridComponent extends Component {
 				die('é preciso configurar o Componente Grid.Grid no seu Controller !!!');
 			}
 		}
-
 		// limpando o filtro
 		if (isset($this->controller->request->params['pass'][0]) && $this->controller->request->params['pass'][0]=='limpar_filtro')
 		{
@@ -284,9 +283,9 @@ class GridComponent extends Component {
 
 		// associações
 		$associations = $this->controller->$modelClass->getAssociated();
-
 		// título da tela vazia
-		$textEmptyTable = isset($params['textEmptyTable']) ? $params['textEmptyTable'] : Mensagem::MSGI004();
+		$textEmptyTable = isset($params['textEmptyTable']) ? $params['textEmptyTable'] : __('A pesquisa retornou vazio');
+
 
 		// Texto para opção vazia dos filtros do tipo select
 		$textEmptyFilter = isset($params['textEmptyFilter']) ? $params['textEmptyFilter'] : '-- Selecione --';
@@ -716,10 +715,10 @@ class GridComponent extends Component {
 		$url 			= $this->url;
 		$dataPost 		= [];
 		$aliasFields 	= [];
-		$params['msgInsertOk'] = isset($params['msgInsertOk']) ? $params['msgInsertOk'] : Mensagem::MSGI001();
-		$params['msgUpdateOk'] = isset($params['msgUpdateOk']) ? $params['msgUpdateOk'] : Mensagem::MSGI002();
-		$params['msgUpdateEr'] = isset($params['msgUpdateEr']) ? $params['msgUpdateEr'] : Mensagem::MSGI012();
-		$params['msgInsertEr'] = isset($params['msgInsertEr']) ? $params['msgInsertEr'] : Mensagem::MSGI013();
+		$params['msgInsertOk'] = isset($params['msgInsertOk']) ? $params['msgInsertOk'] : __("Registro incluído com sucesso !");
+		$params['msgUpdateOk'] = isset($params['msgUpdateOk']) ? $params['msgUpdateOk'] : __("Registro atualizado com sucoesso !");
+		$params['msgUpdateEr'] = isset($params['msgUpdateEr']) ? $params['msgUpdateEr'] : __("Erro ao tentar atualizar registro !");
+		$params['msgInsertEr'] = isset($params['msgInsertEr']) ? $params['msgInsertEr'] : __("Erro ao tentar incluir registro !");
 		$this->controller->$modelClass->setEsquema($this->controller->$modelClass);
 		$this->controller->request->esquema = $this->controller->$modelClass->esquema;
 		$esquema = $this->controller->request->esquema;
@@ -759,7 +758,7 @@ class GridComponent extends Component {
 			$tokenPost 	  = $this->controller->request->data['TokenEdit'];
 			if ($tokenSession != $tokenPost)
 			{
-				$this->controller->Flash->error(Mensagem::MSGI011());
+				$this->controller->Flash->error(__("O Token informado é diferente do token gerado !"));
 				return $this->controller->redirect(['action'=>'index']);
 			}
 
@@ -899,39 +898,34 @@ class GridComponent extends Component {
 		{
 			if (!isset($this->controller->request->data['TokenIndex']))
 			{
-				throw new Exception(Mensagem::MSGI011(), 1);
+				throw new Exception(__("O Token não foi informado !"), 1);
 			}
 			$tokenSession = $this->controller->Session->read($this->chave.'.token');
 			$tokenPost 	  = $this->controller->request->data['TokenIndex'];
 			if ($tokenSession != $tokenPost)
 			{
-				throw new Exception(Mensagem::MSGI011(), 2);
+				throw new Exception(__("O token informado é diferente do gerado !"), 2);
 			}
 			$vlrId = isset($this->controller->request->params['pass'][0])
 	            ? getMaskId($this->controller->request->params['pass'][0],1)
 	            : 0;
 	        if (!$vlrId)
 	        {
-	        	throw new Exception(Mensagem::MSGI011(), 3);
+	        	throw new Exception(__("Id inválido !"), 3);
 	        }
 	        if (!$this->controller->$modelClass->delete($vlrId))
             {
-            	throw new Exception(Mensagem::MSGI014(), 4);
+            	throw new Exception(__("Erro ao tentar excluir registro !"), 4);
             }
 
             $retorno['status'] 	= true;
-            $retorno['msg'] 	= Mensagem::MSGI015();
+            $retorno['msg'] 	= __("Registro excluído com sucesso !");
             $retorno['redirect']= $this->url;
             $this->controller->Flash->success($retorno['msg']);
 		} catch (Exception $e) 
 		{
 			$retorno['status'] 	= false;
-			$retorno['msg'] 	= __('Não foi possível excluir o registro !');
-            /*$retorno['msg'] 	= $e->getMessage();
-			if (method_exists($e, 'getAttributes'))
-			{
-				$retorno['msg'] = utf8_decode($e->getAttributes()['message']);
-			}*/
+			$retorno['msg'] 	= $e->getMessage();
 		}
 
 		$this->controller->set(compact('retorno'));
@@ -984,15 +978,15 @@ class GridComponent extends Component {
 	            : 0;
 	        if (!$vlrId)
 	        {
-	        	throw new Exception(Mensagem::MSGI016(), 1);
+	        	throw new Exception(__("Id inválido !"), 1);
 	        }
 	        if (empty($pk))
             {
-            	throw new Exception(Mensagem::MSGI017(), 2);
+            	throw new Exception(__("Chave primária inválida !"), 2);
             }
             if (empty($esquema))
             {
-            	throw new Exception(Mensagem::MSGI018(), 3);
+            	throw new Exception(__("Esquema inválido !"), 3);
             }
 
 			$this->controller->request->data = $this->controller->$modelClass->find('first',['conditions'=>[$modelClass.'.'.$pk=>$vlrId]]);
