@@ -11,7 +11,7 @@ add in require line:
 "adrianodemoura/grid2": "*"
 
 In bootstrap.php, add:
-CakePlugin::load('Grid', ['bootstrap'=>true]);
+CakePlugin::load('Grid2', ['bootstrap'=>true]);
 
 $ compuser update
 
