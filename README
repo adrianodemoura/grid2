@@ -8,8 +8,11 @@ $ cd you_app_cake2
 $ vim composer.json
 add in require line:
 
-adrianodemoura/grid2": "*"
+"adrianodemoura/grid2": "*"
 
 In bootstrap.php, add:
-
 CakePlugin::load('Grid', ['bootstrap'=>true]);
+
+$ compuser update
+
+enjoy !
