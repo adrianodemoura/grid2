@@ -10,13 +10,13 @@
 		ksort($arrActionsButtons);
 	}
 
-	echo $this->Html->script('/grid/js/grid',array('inline'=>false));
-    echo $this->Html->script('/grid/js/grid_index',array('inline'=>false));
-    echo $this->Html->script('/grid/js/modal',array('inline'=>false));
+	echo $this->Html->script('/grid2/js/grid',array('inline'=>false));
+    echo $this->Html->script('/grid2/js/grid_index',array('inline'=>false));
+    echo $this->Html->script('/grid2/js/modal',array('inline'=>false));
 
-	echo $this->Html->css('/grid/css/grid_index',array('inline'=>false));
-    echo $this->Html->css('/grid/css/grid_editar',array('inline'=>false));
-    echo $this->Html->css('/grid/css/modal',array('inline'=>false));
+	echo $this->Html->css('/grid2/css/grid_index',array('inline'=>false));
+    echo $this->Html->css('/grid2/css/grid_editar',array('inline'=>false));
+    echo $this->Html->css('/grid2/css/modal',array('inline'=>false));
 
     echo $this->Html->scriptBlock(
     	"
